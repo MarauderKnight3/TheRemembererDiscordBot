@@ -9,13 +9,19 @@ namespace TheRemembererDiscordBot
     {
         private static Task Main() => new Program().MainAsync();
         private readonly DiscordShardedClient _client = new(DSC);
-        private static readonly DiscordSocketConfig DSC = new() { LogGatewayIntentWarnings = false, MessageCacheSize = 0 };
+        private static readonly DiscordSocketConfig DSC = new()
+        {
+            LogGatewayIntentWarnings = false,
+            GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent,
+            MessageCacheSize = 0
+        };
         public static readonly List<Command> Commands = new();
 
         private async Task MainAsync()
         {
             _client.Log += Log;
             _client.ShardReady += ClientReady;
+            _client.MessageReceived += MessageReceived;
             _client.SlashCommandExecuted += SlashCommandHandler;
 
             string token = File.ReadAllText("token.txt");
@@ -33,6 +39,8 @@ namespace TheRemembererDiscordBot
 
         private static async Task ClientReady(DiscordSocketClient client)
         {
+            Commands.Add(new PingCommand());
+
             foreach (Command command in Commands)
             {
                 SlashCommandBuilder commandBuilder = new();
@@ -42,12 +50,29 @@ namespace TheRemembererDiscordBot
                 {
                     await client.CreateGlobalApplicationCommandAsync(commandBuilder.Build());
                 }
-                catch (ApplicationCommandException exception)
+                catch (HttpException exception)
                 {
                     var json = JsonSerializer.Serialize(exception.Errors);
                     Console.WriteLine(json);
                 }
             }
+        }
+
+        private static async Task<Task> MessageReceived(SocketMessage msg)
+        {
+            if (msg.Author.IsBot || msg.Author.IsWebhook || msg == null || msg.Channel == null)
+                return Task.CompletedTask;
+
+            if (msg.Content.StartsWith(";"))
+            {
+                string promptedCommand = msg.Content[1..].Split(" ", StringSplitOptions.RemoveEmptyEntries)[0];
+
+                foreach (Command command in Commands)
+                    if (command.CommandName() == promptedCommand)
+                        command.CommandAction(msg, new List<object>());
+            }
+
+            return Task.CompletedTask;
         }
 
         private static async Task SlashCommandHandler(SocketSlashCommand command)

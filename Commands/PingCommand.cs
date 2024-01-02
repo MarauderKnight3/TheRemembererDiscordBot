@@ -1,0 +1,20 @@
+﻿using Discord.WebSocket;
+
+namespace TheRemembererDiscordBot
+{
+    public class PingCommand : Command
+    {
+        public override string CommandName() => "ping";
+        public override string CommandDescription() => "Test to see if the discord bot can properly receive and respond to commands.";
+        public override object? CommandAction(SocketMessage inputMessage, List<object> args)
+        {
+            try
+            {
+                inputMessage.Channel.SendMessageAsync("Pong!");
+            }
+            catch { }
+
+            return null;
+        }
+    }
+}
