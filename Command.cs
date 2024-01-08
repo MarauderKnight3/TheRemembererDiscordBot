@@ -6,6 +6,6 @@ namespace TheRemembererDiscordBot
     {
         public virtual string? CommandName() => null;
         public virtual string? CommandDescription() => null;
-        public virtual object? CommandAction(SocketMessage inputMessage, List<object> args) => null;
+        public virtual async Task<object?> CommandAction(SocketMessage inputMessage, List<object> args) => null;
     }
 }

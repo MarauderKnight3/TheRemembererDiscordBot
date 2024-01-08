@@ -69,7 +69,7 @@ namespace TheRemembererDiscordBot
 
                 foreach (Command command in Commands)
                     if (command.CommandName() == promptedCommand)
-                        command.CommandAction(msg, new List<object>());
+                        await command.CommandAction(msg, new List<object>());
             }
 
             return Task.CompletedTask;
