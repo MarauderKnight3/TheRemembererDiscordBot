@@ -2,7 +2,7 @@
 
 namespace TheRemembererDiscordBot
 {
-    public class PingCommand : Command
+    public class Ping : Command
     {
         public override string CommandName() => "ping";
         public override string CommandDescription() => "Test to see if the discord bot can properly receive and respond to commands.";

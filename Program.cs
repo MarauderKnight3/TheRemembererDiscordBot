@@ -39,7 +39,7 @@ namespace TheRemembererDiscordBot
 
         private static async Task ClientReady(DiscordSocketClient client)
         {
-            Commands.Add(new PingCommand());
+            Commands.Add(new Ping());
 
             foreach (Command command in Commands)
             {
