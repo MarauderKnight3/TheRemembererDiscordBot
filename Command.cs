@@ -30,7 +30,7 @@ namespace TheRemembererDiscordBot
             for (int i = 0; i < argumentDetails.Count; i++)
             {
                 if (arguments.Count == 0 && !argumentDetails[i].MayBeSkipped)
-                    return new List<object> { false };
+                    return new List<object> { false, "Missing required input for argument " + argumentDetails[i] };
                 if (arguments.Count == 0)
                     break;
                 if (argumentDetails[i].ArgumentType is ArgType.CustomText)
@@ -42,15 +42,14 @@ namespace TheRemembererDiscordBot
                 if (argumentDetails[i].ArgumentType is ArgType.PositiveIntegerRangeOrText or ArgType.PositiveIntegerRangeOrTextConcat or ArgType.PositiveIntegerRange && arguments[0].IsPositiveArabicNumber())
                 {
                     if (!int.TryParse(arguments[0], out int n) || (int)argumentDetails[i].ExpectedInputs.ElementAt(0) > n || n > (int)argumentDetails[i].ExpectedInputs.ElementAt(1))
-                        return new List<object> { false };
+                        return new List<object> { false, "Input for argument " + argumentDetails[i] + " was not a number in the valid range." };
                     polished.Add(n);
                     arguments.RemoveAt(0);
                     continue;
                 }
                 else if (argumentDetails[i].ArgumentType is ArgType.PositiveIntegerRange)
-                {
-                    return new List<object> { false };
-                }
+                    return new List<object> { false, "Input for argument " + argumentDetails[i] + " was not a number." };
+
                 string query = arguments[0];
                 arguments.RemoveAt(0);
                 if (argumentDetails[i].ArgumentType is ArgType.TextConcat or ArgType.PositiveIntegerRangeOrTextConcat or ArgType.CustomTextConcat)
@@ -70,7 +69,7 @@ namespace TheRemembererDiscordBot
                 IEnumerable<string> matches = argumentDetails[i].ExpectedInputs.Select(x => (string)x).Where(x => x.StartsWith(query, StringComparison.OrdinalIgnoreCase));
 
                 if (!matches.Any())
-                    return new List<object> { false };
+                    return new List<object> { false, "Input for argument " + argumentDetails[i] + " did not match an option." };
                 if (matches.Count() == 1 && matches.FirstOrDefault() is string onlyMatch)
                     polished.Add(onlyMatch);
                 else
@@ -78,7 +77,7 @@ namespace TheRemembererDiscordBot
                     string? match = matches.Where(x => x.Equals(query, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
                     if (match is null)
-                        return new List<object> { false };
+                        return new List<object> { false, "Shorthand input for argument " + argumentDetails[i] + " matched more than one option. Please be more specific." };
                     polished.Add(match);
                 }
             }

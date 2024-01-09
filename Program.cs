@@ -64,12 +64,25 @@ namespace TheRemembererDiscordBot
 
             if (msg.Content.StartsWith(";"))
             {
-                string promptedCommand = msg.Content[1..].Split(" ", StringSplitOptions.RemoveEmptyEntries)[0];
+                List<string> input = CommandUtils.SeparateArguments(msg.Content[1..]);
 
-                Command? command = Commands.FirstOrDefault(x => promptedCommand == x.CommandName());
+                Command? command = Commands.FirstOrDefault(x => input[0] == x.CommandName());
                 if (command != null)
                 {
-                    await command.CommandAction(msg, command.ParseArguments(CommandUtils.SeparateArguments(msg.Content)));
+                    input.RemoveAt(0);
+
+                    List<object> polished = command.ParseArguments(input);
+
+                    if (polished.Count > 0 && polished[0] is bool)
+                    {
+                        try
+                        {
+                            await msg.Channel.SendMessageAsync((string)polished[1]);
+                        }
+                        catch { }
+                        return Task.CompletedTask;
+                    }
+                    await command.CommandAction(msg, polished);
                 }
             }
 

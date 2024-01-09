@@ -2,13 +2,13 @@
 {
     public class CommandArgument
     {
-        public string ArgumentName;
+        private readonly string ArgumentName;
 
-        public List<object> ExpectedInputs;
+        public readonly List<object> ExpectedInputs;
 
-        public ArgType ArgumentType;
+        public readonly ArgType ArgumentType;
 
-        public bool MayBeSkipped;
+        public readonly bool MayBeSkipped;
 
         public enum ArgType
         {
