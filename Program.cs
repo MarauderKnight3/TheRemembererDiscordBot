@@ -15,7 +15,10 @@ namespace TheRemembererDiscordBot
             GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent,
             MessageCacheSize = 0
         };
-        public static readonly List<Command> Commands = new();
+        public static readonly List<Command> Commands = new()
+        {
+            new Commands.Ping()
+        };
 
         private async Task MainAsync()
         {
@@ -39,8 +42,6 @@ namespace TheRemembererDiscordBot
 
         private static async Task ClientReady(DiscordSocketClient client)
         {
-            Commands.Add(new Ping());
-
             foreach (Command command in Commands)
             {
                 SlashCommandBuilder commandBuilder = new();

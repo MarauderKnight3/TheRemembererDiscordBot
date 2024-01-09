@@ -1,6 +1,6 @@
 ﻿using Discord.WebSocket;
 
-namespace TheRemembererDiscordBot
+namespace TheRemembererDiscordBot.Commands
 {
     public class Ping : Command
     {
