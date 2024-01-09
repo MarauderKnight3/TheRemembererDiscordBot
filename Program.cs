@@ -23,7 +23,7 @@ namespace TheRemembererDiscordBot
         private async Task MainAsync()
         {
             _client.Log += Log;
-            _client.ShardReady += ClientReady;
+            //_client.ShardReady += ClientReady;
             _client.MessageReceived += MessageReceived;
             _client.SlashCommandExecuted += SlashCommandHandler;
 
@@ -40,24 +40,24 @@ namespace TheRemembererDiscordBot
             return Task.CompletedTask;
         }
 
-        private static async Task ClientReady(DiscordSocketClient client)
-        {
-            foreach (Command command in Commands)
-            {
-                SlashCommandBuilder commandBuilder = new();
-                commandBuilder.WithName(command.CommandName());
-                commandBuilder.WithDescription(command.CommandDescription());
-                try
-                {
-                    await client.CreateGlobalApplicationCommandAsync(commandBuilder.Build());
-                }
-                catch (HttpException exception)
-                {
-                    var json = JsonSerializer.Serialize(exception.Errors);
-                    Console.WriteLine(json);
-                }
-            }
-        }
+        //private static async Task ClientReady(DiscordSocketClient client)
+        //{
+        //    foreach (Command command in Commands)
+        //    {
+        //        SlashCommandBuilder commandBuilder = new();
+        //        commandBuilder.WithName(command.CommandName());
+        //        commandBuilder.WithDescription(command.CommandDescription());
+        //        try
+        //        {
+        //            await client.CreateGlobalApplicationCommandAsync(commandBuilder.Build());
+        //        }
+        //        catch (HttpException exception)
+        //        {
+        //            var json = JsonSerializer.Serialize(exception.Errors);
+        //            Console.WriteLine(json);
+        //        }
+        //    }
+        //}
 
         private static async Task<Task> MessageReceived(SocketMessage msg)
         {
