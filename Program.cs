@@ -1,7 +1,5 @@
 ﻿using Discord;
-using Discord.Net;
 using Discord.WebSocket;
-using System.Text.Json;
 
 namespace TheRemembererDiscordBot
 {
@@ -68,9 +66,11 @@ namespace TheRemembererDiscordBot
             {
                 string promptedCommand = msg.Content[1..].Split(" ", StringSplitOptions.RemoveEmptyEntries)[0];
 
-                foreach (Command command in Commands)
-                    if (command.CommandName() == promptedCommand)
-                        await command.CommandAction(msg, new List<object>());
+                Command? command = Commands.FirstOrDefault(x => promptedCommand == x.CommandName());
+                if (command != null)
+                {
+                    await command.CommandAction(msg, command.ParseArguments(CommandUtils.SeparateArguments(msg.Content)));
+                }
             }
 
             return Task.CompletedTask;
