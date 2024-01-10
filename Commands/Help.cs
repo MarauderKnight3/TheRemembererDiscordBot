@@ -40,7 +40,7 @@ namespace TheRemembererDiscordBot.Commands
 
         public static string HelpWithCommand(Command command)
         {
-            string output = command.ToString() + "\nHere are the arguments:\n";
+            string output = command.ToString() + "\nArguments, in order, are as follows:\n";
 
             if (command.CommandArguments().Count == 0)
             {
@@ -49,7 +49,7 @@ namespace TheRemembererDiscordBot.Commands
 
             foreach (CommandArgument arg in command.CommandArguments())
             {
-                output += "***" + arg + "***: *Expects " + arg.ArgumentType switch
+                output += "`" + arg + "`: *Expects " + arg.ArgumentType switch
                 {
                     CommandArgument.ArgType.PositiveIntegerRange =>
                         "a whole number between " + (string)arg.ExpectedInputs[0] + " and " + (string)arg.ExpectedInputs[1],
