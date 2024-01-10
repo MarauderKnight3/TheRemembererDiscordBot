@@ -5,6 +5,12 @@ namespace TheRemembererDiscordBot
 {
     public class Program
     {
+        public static readonly List<Command> Commands = new()
+        {
+            new Commands.Ping(),
+            new Commands.Help()
+        };
+
         private static Task Main() => new Program().MainAsync();
         private readonly DiscordShardedClient _client = new(DSC);
         private static readonly DiscordSocketConfig DSC = new()
@@ -12,11 +18,6 @@ namespace TheRemembererDiscordBot
             LogGatewayIntentWarnings = false,
             GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent,
             MessageCacheSize = 0
-        };
-        public static readonly List<Command> Commands = new()
-        {
-            new Commands.Ping(),
-            new Commands.Help()
         };
 
         private async Task MainAsync()
