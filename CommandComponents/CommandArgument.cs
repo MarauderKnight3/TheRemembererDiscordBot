@@ -3,11 +3,8 @@
     public class CommandArgument
     {
         private readonly string ArgumentName;
-
         public readonly List<object> ExpectedInputs;
-
         public readonly ArgType ArgumentType;
-
         public readonly bool MayBeSkipped;
 
         public enum ArgType
@@ -59,6 +56,5 @@
         }
 
         public override string ToString() => ArgumentName;
-
     }
 }

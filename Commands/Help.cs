@@ -65,6 +65,5 @@ namespace TheRemembererDiscordBot.Commands
 
             return output;
         }
-
     }
 }
