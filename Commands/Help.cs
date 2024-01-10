@@ -7,7 +7,7 @@ namespace TheRemembererDiscordBot.Commands
     {
         public override string CommandDescription() => "List commands, or arguments for a selected command.";
         public override List<CommandArgument> CommandArguments() => new() { new("Command to help with", Program.Commands.Select(x => x.CommandName()).ToList<object>(), false, true) };
-        public override async Task<object?> CommandAction(SocketMessage inputMessage, List<object> args)
+        public override async Task CommandAction(SocketMessage inputMessage, List<object> args)
         {
             if (args.Count == 0)
             {
@@ -34,8 +34,6 @@ namespace TheRemembererDiscordBot.Commands
                 if (command != null)
                     await Respond(inputMessage, HelpWithCommand(command));
             }
-
-            return null;
         }
 
         public static string HelpWithCommand(Command command)
