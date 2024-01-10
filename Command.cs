@@ -12,13 +12,14 @@ namespace TheRemembererDiscordBot
         public virtual List<CommandArgument> CommandArguments() => new();
         public virtual async Task<object?> CommandAction(SocketMessage inputMessage, List<object> args)
         {
-            try
-            {
-                await inputMessage.Channel.SendMessageAsync("This is undefined command behavior.");
-            }
-            catch { }
+            await Respond(inputMessage, "This is undefined command behavior.");
 
             return null;
+        }
+
+        public static async Task<Discord.Rest.RestUserMessage?> Respond(SocketMessage inputMessage, string response)
+        {
+            try { return await inputMessage.Channel.SendMessageAsync(response); } catch { return null; }
         }
 
         public List<object> ParseArguments(List<string> arguments) => ParseArguments(arguments, CommandArguments());

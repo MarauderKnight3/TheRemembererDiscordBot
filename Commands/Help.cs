@@ -11,36 +11,28 @@ namespace TheRemembererDiscordBot.Commands
         {
             if (args.Count == 0)
             {
-                string output = "Prompt about a command with help <command> to see some details on how it can be used.\n";
+                string response = "Prompt about a command with `help <command>` to see some details on how it can be used.\n";
                 string tooManyCommands = "More commands not shown due to message limit.";
                 foreach (Command command in Program.Commands)
                 {
                     string thisCommandText = command + "\n";
 
-                    if (output.Length + thisCommandText.Length + tooManyCommands.Length > 2000)
+                    if (response.Length + thisCommandText.Length + tooManyCommands.Length > 2000)
                     {
-                        output += tooManyCommands;
+                        response += tooManyCommands;
                         break;
                     }
 
-                    output += thisCommandText;
+                    response += thisCommandText;
                 }
-                try
-                {
-                    await inputMessage.Channel.SendMessageAsync(output);
-                }
-                catch { }
+                await Respond(inputMessage, response);
             }
             else
             {
                 Command? command = Program.Commands.FirstOrDefault(x => (string)args[0] == x.CommandName());
 
-                try
-                {
-                    if (command != null)
-                        await inputMessage.Channel.SendMessageAsync(HelpWithCommand(command));
-                }
-                catch { }
+                if (command != null)
+                    await Respond(inputMessage, HelpWithCommand(command));
             }
 
             return null;
