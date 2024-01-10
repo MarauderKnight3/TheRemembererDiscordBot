@@ -40,12 +40,6 @@ namespace TheRemembererDiscordBot.Commands
                 catch { }
             }
 
-            try
-            {
-                await inputMessage.Channel.SendMessageAsync("Pong!");
-            }
-            catch { }
-
             return null;
         }
 
