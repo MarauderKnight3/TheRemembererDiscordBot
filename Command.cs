@@ -6,7 +6,7 @@ namespace TheRemembererDiscordBot
 {
     public class Command
     {
-        public virtual string? CommandName() => null;
+        public string CommandName() => GetType().Name.ToLower();
         public virtual string? CommandDescription() => null;
         public virtual List<CommandArgument> CommandArguments() => new();
         public virtual async Task<object?> CommandAction(SocketMessage inputMessage, List<object> args)
@@ -83,5 +83,8 @@ namespace TheRemembererDiscordBot
             }
             return polished;
         }
+
+        public override string ToString() => CommandName() + ": " + CommandDescription();
+
     }
 }
