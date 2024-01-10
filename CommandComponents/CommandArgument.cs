@@ -1,4 +1,4 @@
-﻿namespace TheRemembererDiscordBot
+﻿namespace TheRemembererDiscordBot.CommandComponents
 {
     public class CommandArgument
     {
