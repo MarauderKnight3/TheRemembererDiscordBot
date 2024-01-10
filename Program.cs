@@ -24,7 +24,7 @@ namespace TheRemembererDiscordBot
             _client.Log += Log;
             //_client.ShardReady += ClientReady;
             _client.MessageReceived += MessageReceived;
-            _client.SlashCommandExecuted += SlashCommandHandler;
+            //_client.SlashCommandExecuted += SlashCommandHandler;
 
             string token = File.ReadAllText("token.txt");
             await _client.LoginAsync(TokenType.Bot, token);
@@ -90,9 +90,9 @@ namespace TheRemembererDiscordBot
             return Task.CompletedTask;
         }
 
-        private static async Task SlashCommandHandler(SocketSlashCommand command)
-        {
-            await command.RespondAsync($"You executed {command.Data.Name}");
-        }
+        //private static async Task SlashCommandHandler(SocketSlashCommand command)
+        //{
+        //    await command.RespondAsync($"You executed {command.Data.Name}");
+        //}
     }
 }
