@@ -14,13 +14,15 @@ namespace TheRemembererDiscordBot.Commands
                 string tooManyCommands = "More commands not shown due to message limit.";
                 foreach (Command command in Program.Commands)
                 {
-                    if (output.Length + command.ToString().Length + tooManyCommands.Length > 2000)
+                    string thisCommandText = command + "\n";
+
+                    if (output.Length + thisCommandText.Length + tooManyCommands.Length > 2000)
                     {
                         output += tooManyCommands;
                         break;
                     }
 
-                    output += command + "\n";
+                    output += thisCommandText;
                 }
                 try
                 {
@@ -54,7 +56,7 @@ namespace TheRemembererDiscordBot.Commands
 
             foreach (CommandArgument arg in command.CommandArguments())
             {
-                output += arg + ": Expects " + arg.ArgumentType switch
+                output += "***" + arg + "***: *Expects " + arg.ArgumentType switch
                 {
                     CommandArgument.ArgType.PositiveIntegerRange =>
                         "a whole number between " + (string)arg.ExpectedInputs[0] + " and " + (string)arg.ExpectedInputs[1],
@@ -67,7 +69,7 @@ namespace TheRemembererDiscordBot.Commands
                         "any of the following: " + string.Join(", ", arg.ExpectedInputs),
 
                     _ => "text (doesn't need to match an expected value)"
-                } + "\n";
+                } + "* " + (arg.MayBeSkipped ? "**(This argument can be skipped)**" : "") + "\n";
             }
 
             return output;

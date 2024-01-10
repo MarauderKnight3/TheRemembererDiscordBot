@@ -31,7 +31,7 @@ namespace TheRemembererDiscordBot
             for (int i = 0; i < argumentDetails.Count; i++)
             {
                 if (arguments.Count == 0 && !argumentDetails[i].MayBeSkipped)
-                    return new List<object> { false, "Missing required input for argument \"" + argumentDetails[i] + "\""};
+                    return new List<object> { false, "Missing required input for argument \"" + argumentDetails[i] + "\"" };
                 if (arguments.Count == 0)
                     break;
                 if (argumentDetails[i].ArgumentType is ArgType.CustomText)
@@ -85,7 +85,7 @@ namespace TheRemembererDiscordBot
             return polished;
         }
 
-        public override string ToString() => CommandName() + ": " + CommandDescription();
+        public override string ToString() => "`" + CommandName() + "`: " + CommandDescription();
 
     }
 }
