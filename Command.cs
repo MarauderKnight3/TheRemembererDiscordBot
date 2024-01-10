@@ -8,6 +8,7 @@ namespace TheRemembererDiscordBot
     {
         public string CommandName() => GetType().Name.ToLower();
         public virtual string? CommandDescription() => null;
+        public virtual string CustomCommandArgumentsDescription() => "Command does not have any arguments.";
         public virtual List<CommandArgument> CommandArguments() => new();
         public virtual async Task<object?> CommandAction(SocketMessage inputMessage, List<object> args)
         {

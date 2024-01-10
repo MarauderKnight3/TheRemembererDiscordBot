@@ -15,7 +15,8 @@ namespace TheRemembererDiscordBot
         };
         public static readonly List<Command> Commands = new()
         {
-            new Commands.Ping()
+            new Commands.Ping(),
+            new Commands.Help()
         };
 
         private async Task MainAsync()
@@ -77,7 +78,7 @@ namespace TheRemembererDiscordBot
                     {
                         try
                         {
-                            await msg.Channel.SendMessageAsync((string)polished[1]);
+                            await msg.Channel.SendMessageAsync((string)polished[1] + "\n" + TheRemembererDiscordBot.Commands.Help.HelpWithCommand(command));
                         }
                         catch { }
                         return Task.CompletedTask;
