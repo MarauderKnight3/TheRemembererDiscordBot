@@ -1,0 +1,29 @@
+﻿using Discord.WebSocket;
+using TheRemembererDiscordBot.CommandComponents;
+
+namespace TheRemembererDiscordBot.Commands
+{
+    public class DiceRoll : Command
+    {
+        public override string CommandDescription() => "Rolls a D10, or a die with as many faces as you specify.";
+        public override List<CommandArgument> CommandArguments() => new() { new("Faces on the die", new() { 2, 1000 }, false, true) };
+        public override async Task CommandAction(SocketMessage inputMessage, List<object> args)
+        {
+            string response = DiceTexts[Random.Shared.Next(DiceTexts.Count)];
+            int faces = args.Count == 1 ? (int)args[0] : 10;
+            int result = Random.Shared.Next(faces) + 1;
+            response += result + (result >= faces * 0.8 ? "!" : ".");
+
+            await Respond(inputMessage, response);
+        }
+
+        public static readonly List<string> DiceTexts = new()
+        {
+            "You rolled a ",
+            "That will be a ",
+            "That's a ",
+            "Looks like a ",
+            "It's a "
+        };
+    }
+}

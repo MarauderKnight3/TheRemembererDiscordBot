@@ -11,6 +11,7 @@ namespace TheRemembererDiscordBot
             new Commands.Help(),
             new Commands.NewDataType(),
             new Commands.CoinFlip(),
+            new Commands.DiceRoll(),
         };
 
         private static Task Main() => new Program().MainAsync();
