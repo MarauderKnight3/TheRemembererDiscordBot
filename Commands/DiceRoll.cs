@@ -12,18 +12,20 @@ namespace TheRemembererDiscordBot.Commands
             string response = DiceTexts[Random.Shared.Next(DiceTexts.Count)];
             int faces = args.Count == 1 ? (int)args[0] : 10;
             int result = Random.Shared.Next(faces) + 1;
-            response += result + (result >= faces * 0.8 ? "!" : ".");
+            response += result == 11 || result.ToString().StartsWith("8") ? "an " : "a ";
+            response += result;
+            response += result >= faces * 0.8 ? "!" : ".";
 
             await Respond(inputMessage, response);
         }
 
         public static readonly List<string> DiceTexts = new()
         {
-            "You rolled a ",
-            "That will be a ",
-            "That's a ",
-            "Looks like a ",
-            "It's a "
+            "You rolled ",
+            "That will be ",
+            "That's ",
+            "Looks like ",
+            "It's "
         };
     }
 }
