@@ -8,7 +8,8 @@ namespace TheRemembererDiscordBot
         public static readonly List<Command> Commands = new()
         {
             new Commands.Ping(),
-            new Commands.Help()
+            new Commands.Help(),
+            new Commands.NewDataType(),
         };
 
         private static Task Main() => new Program().MainAsync();
