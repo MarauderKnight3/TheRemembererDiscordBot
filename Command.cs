@@ -56,7 +56,7 @@ namespace TheRemembererDiscordBot
                 arguments.RemoveAt(0);
                 if (argumentDetails[i].ArgumentType is CommandArgument.ArgType.TextConcat or CommandArgument.ArgType.PositiveIntegerRangeOrTextConcat or CommandArgument.ArgType.CustomTextConcat)
                 {
-                    while ((arguments.Count > 0 && new Regex("\\D").IsMatch(arguments[0])) || i == argumentDetails.Count - 1)
+                    while ((arguments.Count > 0 && new Regex("\\D").IsMatch(arguments[0])) || i == argumentDetails.Count - 1 && arguments.Count > 0)
                     {
                         query += " " + arguments[0];
                         arguments.RemoveAt(0);
