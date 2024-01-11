@@ -4,7 +4,7 @@ namespace TheRemembererDiscordBot
 {
     public static class CommandUtils
     {
-        private static readonly Regex ArgumentSeparator = new("[\"].*?[\"]|[^ ]+");
+        private static readonly Regex ArgumentSeparator = new("[\"].*?[\"]|\\S+");
 
         public static List<string> SeparateArguments(string message) => ArgumentSeparator.Matches(message).Select(x => x.Value).ToList();
 
