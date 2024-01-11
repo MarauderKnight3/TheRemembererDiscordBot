@@ -50,10 +50,10 @@ namespace TheRemembererDiscordBot.Commands
                 output += "`" + arg + "`: *Expects " + arg.ArgumentType switch
                 {
                     CommandArgument.ArgType.PositiveIntegerRange =>
-                        "a whole number between " + (string)arg.ExpectedInputs[0] + " and " + (string)arg.ExpectedInputs[1],
+                        "a whole number between " + arg.ExpectedInputs[0].ToString() + " and " + arg.ExpectedInputs[1].ToString(),
 
                     CommandArgument.ArgType.PositiveIntegerRangeOrText or CommandArgument.ArgType.PositiveIntegerRangeOrTextConcat =>
-                        "a whole number between " + (string)arg.ExpectedInputs[0] + " and " + (string)arg.ExpectedInputs[1]
+                        "a whole number between " + arg.ExpectedInputs[0].ToString() + " and " + arg.ExpectedInputs[1].ToString()
                         + " or any of the following: " + string.Join(", ", arg.ExpectedInputs.GetRange(2, arg.ExpectedInputs.Count - 2)),
 
                     CommandArgument.ArgType.Text or CommandArgument.ArgType.TextConcat =>
