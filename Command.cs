@@ -6,7 +6,12 @@ namespace TheRemembererDiscordBot
 {
     public class Command
     {
-        public string CommandName() => GetType().Name.ToLower();
+        private string? _CommandName;
+        public string CommandName()
+        {
+            _CommandName ??= GetType().Name.ToLower();
+            return _CommandName;
+        }
         public virtual string? CommandDescription() => null;
         public virtual string CustomCommandArgumentsDescription() => "Command does not have any arguments.";
         public virtual List<CommandArgument> CommandArguments() => new();
