@@ -1,10 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace TheRemembererDiscordBot.UserData
 {
     public class UserDataType
     {
-        public static readonly List<UserDataType> Examples = new()
+        public static readonly string Examples = string.Concat(new List<UserDataType>()
             {
                 new("Example Data Type", new() {
                     { "This is the name for a text value, and it is signified as a text value with the code 0", AllowedValueTypes.TextValue },
@@ -14,7 +15,10 @@ namespace TheRemembererDiscordBot.UserData
                     { "Name", AllowedValueTypes.TextValue },
                     { "Weight", AllowedValueTypes.DecimalValue }
                 })
-            };
+            }.Select(x => "```json\n" + JsonSerializer.Serialize(x, options: new()
+            {
+                WriteIndented = true
+            }) + "```"));
 
         private readonly string _DataTypeName;
         public string DataTypeName { get { return _DataTypeName; } }
