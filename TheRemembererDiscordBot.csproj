@@ -11,8 +11,4 @@
     <PackageReference Include="Discord.Net" Version="3.13.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CommandComponents\" />
-  </ItemGroup>
-
 </Project>
