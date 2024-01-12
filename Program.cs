@@ -7,9 +7,7 @@ namespace TheRemembererDiscordBot
     {
         public static readonly List<Command> Commands = new()
         {
-            new Commands.Ping(),
             new Commands.Help(),
-            new Commands.NewDataType(),
             new Commands.CoinFlip(),
             new Commands.DiceRoll(),
         };
