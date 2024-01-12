@@ -6,7 +6,7 @@ namespace TheRemembererDiscordBot.Commands
     public class DiceRoll : Command
     {
         public override string CommandDescription() => "Rolls a D10, or a die with as many faces as you specify.";
-        public override List<CommandArgument> CommandArguments() => new() { new("Faces on the die", new() { 2, 1000 }, false, true) };
+        public override List<CommandArgument> CommandArguments() => new() { new("Faces on the die", new() { 2, 1000 }, mayBeSkipped: true) };
         public override async Task CommandAction(SocketMessage inputMessage, List<object> args)
         {
             string response = DiceTexts[Random.Shared.Next(DiceTexts.Count)];

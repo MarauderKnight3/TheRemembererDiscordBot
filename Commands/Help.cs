@@ -6,7 +6,7 @@ namespace TheRemembererDiscordBot.Commands
     public class Help : Command
     {
         public override string CommandDescription() => "List commands, or arguments for a selected command.";
-        public override List<CommandArgument> CommandArguments() => new() { new("Command to help with", Program.Commands.Select(x => x.CommandName()).ToList<object>(), false, true) };
+        public override List<CommandArgument> CommandArguments() => new() { new("Command to help with", Program.Commands.Select(x => x.CommandName()).ToList<object>(), mayBeSkipped: true) };
         public override async Task CommandAction(SocketMessage inputMessage, List<object> args)
         {
             if (args.Count == 0)

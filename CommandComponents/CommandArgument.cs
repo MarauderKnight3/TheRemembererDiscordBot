@@ -18,7 +18,7 @@
             CustomTextConcat
         }
 
-        public CommandArgument(string argumentName, List<object> expectedInputs, bool concat, bool mayBeSkipped = false)
+        public CommandArgument(string argumentName, List<object> expectedInputs, bool concat = false, bool mayBeSkipped = false)
         {
             //Assumptions:
 
