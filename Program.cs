@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.WebSocket;
+using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot
 {
@@ -89,6 +90,7 @@ namespace TheRemembererDiscordBot
                 }
             }
 
+            SaveData.Write(msg.Author.Id, SaveData.GetSaveData(msg.Author.Id));
             return Task.CompletedTask;
         }
 
