@@ -82,7 +82,7 @@ namespace TheRemembererDiscordBot
                     {
                         try
                         {
-                            await message.Channel.SendMessageAsync((string)polished[1] + "\n" + TheRemembererDiscordBot.Commands.Help.HelpWithCommand(command));
+                            await message.Channel.SendMessageAsync((string)polished[1] + "\n" + TheRemembererDiscordBot.Commands.Help.HelpWithCommand(message, command));
                         }
                         catch { }
                         return Task.CompletedTask;

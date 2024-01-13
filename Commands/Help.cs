@@ -32,20 +32,20 @@ namespace TheRemembererDiscordBot.Commands
                 Command? command = Program.Commands.FirstOrDefault(x => (string)args[0] == x.CommandName());
 
                 if (command != null)
-                    await Respond(message, HelpWithCommand(command));
+                    await Respond(message, HelpWithCommand(message, command));
             }
         }
 
-        public static string HelpWithCommand(Command command)
+        public static string HelpWithCommand(SocketMessage message, Command command)
         {
             string output = command.ToString() + "\nArguments, in order, are as follows:\n";
 
-            if (command.CommandArguments().Count == 0)
+            if (command.CommandArguments(message).Count == 0)
             {
                 output += command.CustomCommandArgumentsDescription();
             }
 
-            foreach (CommandArgument arg in command.CommandArguments())
+            foreach (CommandArgument arg in command.CommandArguments(message))
             {
                 output += "`" + arg + "`: *Expects " + arg.ArgumentType switch
                 {
