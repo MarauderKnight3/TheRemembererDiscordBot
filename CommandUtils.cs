@@ -6,7 +6,7 @@ namespace TheRemembererDiscordBot
     {
         private static readonly Regex ArgumentSeparator = new("[\"].*?[\"]|\\S+");
 
-        public static List<string> SeparateArguments(string message) => ArgumentSeparator.Matches(message).Select(x => x.Value).ToList();
+        public static List<string> SeparateArguments(string message) => ArgumentSeparator.Matches(message).Select(x => x.Value.StartsWith("\"") && x.Value.EndsWith("\"") ? x.Value[1..^1] : x.Value).ToList();
 
         public static bool IsPositiveArabicNumber(this string value)
         {
