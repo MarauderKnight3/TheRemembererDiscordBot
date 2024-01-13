@@ -14,15 +14,15 @@ namespace TheRemembererDiscordBot
         }
         public virtual string? CommandDescription() => null;
         public virtual string CustomCommandArgumentsDescription() => "Command does not have any arguments.";
-        public virtual List<CommandArgument> CommandArguments() => new();
-        public virtual async Task CommandAction(SocketMessage inputMessage, List<object> args) => await Respond(inputMessage, "This is undefined command behavior.");
+        public virtual List<CommandArgument> CommandArguments(SocketMessage message) => new();
+        public virtual async Task CommandAction(SocketMessage message, List<object> args) => await Respond(message, "This is undefined command behavior.");
 
-        public static async Task<Discord.Rest.RestUserMessage?> Respond(SocketMessage inputMessage, string response)
+        public static async Task<Discord.Rest.RestUserMessage?> Respond(SocketMessage message, string response)
         {
-            try { return await inputMessage.Channel.SendMessageAsync(response); } catch { return null; }
+            try { return await message.Channel.SendMessageAsync(response); } catch { return null; }
         }
 
-        public List<object> ParseArguments(List<string> arguments) => ParseArguments(arguments, CommandArguments());
+        public List<object> ParseArguments(SocketMessage message, List<string> arguments) => ParseArguments(arguments, CommandArguments(message));
 
         public static List<object> ParseArguments(List<string> arguments, List<CommandArgument> argumentDetails)
         {

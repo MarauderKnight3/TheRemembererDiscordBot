@@ -62,36 +62,36 @@ namespace TheRemembererDiscordBot
         //    }
         //}
 
-        private static async Task<Task> MessageReceived(SocketMessage msg)
+        private static async Task<Task> MessageReceived(SocketMessage message)
         {
-            if (msg.Author.IsBot || msg.Author.IsWebhook || msg == null || msg.Channel == null)
+            if (message.Author.IsBot || message.Author.IsWebhook || message == null || message.Channel == null)
                 return Task.CompletedTask;
 
-            if (msg.Content.StartsWith(";"))
+            if (message.Content.StartsWith(";"))
             {
-                List<string> input = CommandUtils.SeparateArguments(msg.Content[1..]);
+                List<string> input = CommandUtils.SeparateArguments(message.Content[1..]);
 
                 Command? command = Commands.FirstOrDefault(x => input[0] == x.CommandName());
                 if (command != null)
                 {
                     input.RemoveAt(0);
 
-                    List<object> polished = command.ParseArguments(input);
+                    List<object> polished = command.ParseArguments(message, input);
 
                     if (polished.Count > 0 && polished[0] is bool)
                     {
                         try
                         {
-                            await msg.Channel.SendMessageAsync((string)polished[1] + "\n" + TheRemembererDiscordBot.Commands.Help.HelpWithCommand(command));
+                            await message.Channel.SendMessageAsync((string)polished[1] + "\n" + TheRemembererDiscordBot.Commands.Help.HelpWithCommand(command));
                         }
                         catch { }
                         return Task.CompletedTask;
                     }
-                    await command.CommandAction(msg, polished);
+                    await command.CommandAction(message, polished);
                 }
             }
 
-            SaveData.Write(msg.Author.Id, SaveData.GetSaveData(msg.Author.Id));
+            SaveData.Write(message.Author.Id, SaveData.GetSaveData(message.Author.Id));
             return Task.CompletedTask;
         }
 
