@@ -20,7 +20,15 @@ namespace TheRemembererDiscordBot.Commands
                 return;
             }
 
-            SaveData.GetSaveData(message.Author.Id).Inventories.Add(nameOfNewInventory, new());
+            SaveData thisUserData = SaveData.GetSaveData(message.Author.Id);
+
+            if (thisUserData.Inventories.Count >= 50)
+            {
+                await Respond(message, "You cannot have more than 50 inventories.");
+                return;
+            }
+
+            thisUserData.Inventories.Add(nameOfNewInventory, new());
 
             await Respond(message, "The inventory `" + nameOfNewInventory + "` has been created successfully.");
         }
