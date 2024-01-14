@@ -22,9 +22,9 @@ namespace TheRemembererDiscordBot.Commands
 
             SaveData thisUserData = SaveData.GetSaveData(message.Author.Id);
 
-            if (thisUserData.Inventories.Count >= 50)
+            if (thisUserData.Inventories.Count >= 25)
             {
-                await Respond(message, "You cannot have more than 50 inventories.");
+                await Respond(message, "You cannot have more than 25 inventories.");
                 return;
             }
 
