@@ -37,7 +37,7 @@ namespace TheRemembererDiscordBot.Commands
         {
             if (string.IsNullOrWhiteSpace(nameOfNewInventory))
                 return 1;
-            if (nameOfNewInventory.Length >= 24)
+            if (nameOfNewInventory.Length >= 25)
                 return 2;
             if (SaveData.GetSaveData(message.Author.Id).Inventories.ContainsKey(nameOfNewInventory))
                 return 3;
