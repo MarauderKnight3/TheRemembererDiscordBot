@@ -10,9 +10,9 @@ namespace TheRemembererDiscordBot.Commands
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of the new inventory", new()) };
         public override async Task CommandAction(SocketMessage message, List<object> args)
         {
-            string nameOfNewInventory = args[0].ToString() ?? string.Empty;
+            string name = args[0].ToString() ?? string.Empty;
 
-            int checkStatus = CheckNewInventoryName(message, nameOfNewInventory);
+            int checkStatus = CheckNewInventoryName(message, name);
 
             if (checkStatus != 0)
             {
@@ -28,18 +28,18 @@ namespace TheRemembererDiscordBot.Commands
                 return;
             }
 
-            thisUserData.Inventories.Add(nameOfNewInventory, new());
+            thisUserData.Inventories.Add(name, new());
 
-            await Respond(message, "The inventory `" + nameOfNewInventory + "` has been created successfully.");
+            await Respond(message, "The inventory `" + name + "` has been created successfully.");
         }
 
-        public static int CheckNewInventoryName(SocketMessage message, string nameOfNewInventory)
+        public static int CheckNewInventoryName(SocketMessage message, string name)
         {
-            if (string.IsNullOrWhiteSpace(nameOfNewInventory))
+            if (string.IsNullOrWhiteSpace(name))
                 return 1;
-            if (nameOfNewInventory.Length >= 25)
+            if (name.Length >= 25)
                 return 2;
-            if (SaveData.GetSaveData(message.Author.Id).Inventories.ContainsKey(nameOfNewInventory))
+            if (SaveData.GetSaveData(message.Author.Id).Inventories.ContainsKey(name))
                 return 3;
             return 0;
         }
