@@ -54,10 +54,10 @@ namespace TheRemembererDiscordBot.Commands
 
                     CommandArgument.ArgType.PositiveIntegerRangeOrText or CommandArgument.ArgType.PositiveIntegerRangeOrTextConcat =>
                         "a whole number between " + arg.ExpectedInputs[0].ToString() + " and " + arg.ExpectedInputs[1].ToString()
-                        + " or any of the following: " + string.Join(", ", arg.ExpectedInputs.GetRange(2, arg.ExpectedInputs.Count - 2)),
+                        + " or any of the following: " + CommandUtils.TruncateJoin(", ", "...", arg.ExpectedInputs.GetRange(2, arg.ExpectedInputs.Count - 2).OfType<string>(), 200),
 
                     CommandArgument.ArgType.Text or CommandArgument.ArgType.TextConcat =>
-                        "any of the following: " + string.Join(", ", arg.ExpectedInputs),
+                        "any of the following: " + CommandUtils.TruncateJoin(", ", "...", arg.ExpectedInputs.OfType<string>(), 200),
 
                     _ => "text (doesn't need to match an expected value)"
                 } + "* " + (arg.MayBeSkipped ? "**(This argument can be skipped)**" : "") + "\n";

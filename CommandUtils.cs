@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TheRemembererDiscordBot
 {
@@ -18,6 +19,28 @@ namespace TheRemembererDiscordBot
                     return false;
 
             return true;
+        }
+
+        public static string TruncateJoin(string separator, string terminator, List<string> values, int maxLength) => TruncateJoin(separator, terminator, values as IEnumerable<string>, maxLength);
+
+        public static string TruncateJoin(string separator, string terminator, IEnumerable<string> values, int maxLength)
+        {
+            StringBuilder result = new();
+            int currentLength = 0;
+
+            foreach (string value in values)
+            {
+                if (currentLength + value.Length + separator.Length > maxLength)
+                {
+                    result.Append(value + terminator);
+                    break;
+                }
+
+                result.Append(value + separator);
+                currentLength += value.Length + separator.Length;
+            }
+
+            return result.ToString().TrimEnd(separator.ToCharArray());
         }
     }
 }
