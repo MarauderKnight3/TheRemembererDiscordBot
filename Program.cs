@@ -13,6 +13,7 @@ namespace TheRemembererDiscordBot
             new Commands.DiceRoll(),
             new Commands.ListInventories(),
             new Commands.NewInventory(),
+            new Commands.RenameInventory(),
             new Commands.DeleteInventory(),
             new Commands.DeleteAllInventories(),
         };
