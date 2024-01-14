@@ -34,7 +34,7 @@ namespace TheRemembererDiscordBot.Commands
 
         public static List<string> GetInventoryPages(SaveData thisUserData, string searchQuery = "")
         {
-            List<string> inventoryNames = thisUserData.Inventories.Keys.Where(x => x.ToLower().Contains(searchQuery)).ToList();
+            List<string> inventoryNames = thisUserData.Inventories.Keys.Where(x => x.ToLower().Contains(searchQuery.ToLower())).ToList();
 
             List<string> inventoryPages = new();
 
