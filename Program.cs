@@ -22,7 +22,7 @@ namespace TheRemembererDiscordBot
             new Commands.NewItem(),
             new Commands.ListItems(),
             new Commands.RenameItem(),
-            new Commands.ChangeItem(),
+            new Commands.ChangeItemWeight(),
             new Commands.DelItem(),
             new Commands.DeleteAllItemTypes(),
 
