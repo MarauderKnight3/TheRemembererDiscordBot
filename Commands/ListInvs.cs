@@ -5,7 +5,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class ListInventories : Command
+    public class ListInvs : Command
     {
         public override string CommandDescription() => "List all the inventories you have created.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Page number", new() { 1, Math.Max(1, GetInventoryPages(SaveData.GetSaveData(message.Author.Id)).Count) }, mayBeSkipped: true), new("Search query", new(), true, true) };

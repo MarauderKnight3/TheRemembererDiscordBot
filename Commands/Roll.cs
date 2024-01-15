@@ -3,7 +3,7 @@ using TheRemembererDiscordBot.CommandComponents;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class DiceRoll : Command
+    public class Roll : Command
     {
         public override string CommandDescription() => "Rolls a D10, or a die with as many faces as you specify.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Faces on the die", new() { 2, 1000 }, mayBeSkipped: true) };

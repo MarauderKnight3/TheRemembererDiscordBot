@@ -4,7 +4,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class RenameItemType : Command
+    public class RenameItem : Command
     {
         public override string CommandDescription() => "Rename an item type.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of item type to rename", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>()), new("New name of the item type", new()) };
@@ -13,11 +13,11 @@ namespace TheRemembererDiscordBot.Commands
             string oldName = args[0].ToString() ?? string.Empty;
             string newName = args[1].ToString() ?? string.Empty;
 
-            int checkStatus = NewItemType.CheckNewItemTypeName(message, newName);
+            int checkStatus = NewItem.CheckNewItemTypeName(message, newName);
 
             if (checkStatus != 0)
             {
-                await Respond(message, NewItemType.CheckNewItemTypeNameErrorMessage(checkStatus));
+                await Respond(message, NewItem.CheckNewItemTypeNameErrorMessage(checkStatus));
                 return;
             }
 

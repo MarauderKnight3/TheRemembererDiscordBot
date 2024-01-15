@@ -4,7 +4,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class DeleteInventory : Command
+    public class DelInv : Command
     {
         public override string CommandDescription() => "Delete an inventory.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of inventory to delete", SaveData.GetSaveData(message.Author.Id).Inventories.Keys.ToList<object>()), new("Confirm", new() { "confirm" }, mayBeSkipped: true) };

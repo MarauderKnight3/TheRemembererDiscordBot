@@ -4,7 +4,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class NewItemType : Command
+    public class NewItem : Command
     {
         public override string CommandDescription() => "Define a new type of item.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of this sort of item", new(), true), new("Weight of this sort of item", new() { 0, 1000000 }) };

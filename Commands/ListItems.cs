@@ -5,7 +5,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class ListItemTypes : Command
+    public class ListItems : Command
     {
         public override string CommandDescription() => "List all the item types you have created.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Page number", new() { 1, Math.Max(1, GetItemTypePages(SaveData.GetSaveData(message.Author.Id)).Count) }, mayBeSkipped: true), new("Search query", new(), true, true) };

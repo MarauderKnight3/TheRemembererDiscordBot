@@ -4,7 +4,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class ChangeWeight : Command
+    public class ChangeItem : Command
     {
         public override string CommandDescription() => "Change the weight of an item type.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of item type to change", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>()), new("New weight of the item type", new() { 0, 1000000 }) };

@@ -4,7 +4,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class DeleteItemType : Command
+    public class DelItem : Command
     {
         public override string CommandDescription() => "Delete an item type.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of item type to delete", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>()), new("Confirm", new() { "confirm" }, mayBeSkipped: true) };

@@ -4,7 +4,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class RenameInventory : Command
+    public class RenameInv : Command
     {
         public override string CommandDescription() => "Rename an inventory.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of inventory to rename", SaveData.GetSaveData(message.Author.Id).Inventories.Keys.ToList<object>()), new("New name of the inventory", new()) };
@@ -13,11 +13,11 @@ namespace TheRemembererDiscordBot.Commands
             string oldName = args[0].ToString() ?? string.Empty;
             string newName = args[1].ToString() ?? string.Empty;
 
-            int checkStatus = NewInventory.CheckNewInventoryName(message, newName);
+            int checkStatus = NewInv.CheckNewInventoryName(message, newName);
 
             if (checkStatus != 0)
             {
-                await Respond(message, NewInventory.CheckNewInventoryNameErrorMessage(checkStatus));
+                await Respond(message, NewInv.CheckNewInventoryNameErrorMessage(checkStatus));
                 return;
             }
 

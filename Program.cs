@@ -10,20 +10,20 @@ namespace TheRemembererDiscordBot
         {
             new Commands.Help(),
             new Commands.Ping(),
-            new Commands.CoinFlip(),
-            new Commands.DiceRoll(),
+            new Commands.Coin(),
+            new Commands.Roll(),
 
-            new Commands.NewInventory(),
-            new Commands.ListInventories(),
-            new Commands.RenameInventory(),
-            new Commands.DeleteInventory(),
+            new Commands.NewInv(),
+            new Commands.ListInvs(),
+            new Commands.RenameInv(),
+            new Commands.DelInv(),
             new Commands.DeleteAllInventories(),
 
-            new Commands.NewItemType(),
-            new Commands.ListItemTypes(),
-            new Commands.RenameItemType(),
-            new Commands.ChangeWeight(),
-            new Commands.DeleteItemType(),
+            new Commands.NewItem(),
+            new Commands.ListItems(),
+            new Commands.RenameItem(),
+            new Commands.ChangeItem(),
+            new Commands.DelItem(),
         };
 
         private static Task Main() => new Program().MainAsync();

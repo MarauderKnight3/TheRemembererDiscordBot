@@ -4,7 +4,7 @@ using TheRemembererDiscordBot.UserData;
 
 namespace TheRemembererDiscordBot.Commands
 {
-    public class NewInventory : Command
+    public class NewInv : Command
     {
         public override string CommandDescription() => "Name and create a new inventory.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of the new inventory", new()) };
