@@ -22,7 +22,7 @@ namespace TheRemembererDiscordBot.Commands
             try
             {
                 SaveData.GetSaveData(message.Author.Id).Inventories.Remove(inventoryName);
-                await Respond(message, "The inventory named `" + inventoryName + "` has been deleted succesfully.");
+                await Respond(message, "The inventory named `" + inventoryName + "` has been deleted successfully.");
             }
             catch
             {

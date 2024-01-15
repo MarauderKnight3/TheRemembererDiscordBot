@@ -36,7 +36,7 @@ namespace TheRemembererDiscordBot.Commands
 
                 thisUserData.ItemTypes.Remove(itemType);
 
-                await Respond(message, "The item type named `" + itemTypeName + "` has been deleted succesfully.");
+                await Respond(message, "The item type named `" + itemTypeName + "` has been deleted successfully.");
             }
             catch
             {
