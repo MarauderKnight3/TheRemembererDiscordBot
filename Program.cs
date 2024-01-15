@@ -105,10 +105,10 @@ namespace TheRemembererDiscordBot
                         return Task.CompletedTask;
                     }
                     await command.CommandAction(message, polished);
+                    SaveData.Write(message.Author.Id, SaveData.GetSaveData(message.Author.Id));
                 }
             }
 
-            SaveData.Write(message.Author.Id, SaveData.GetSaveData(message.Author.Id));
             return Task.CompletedTask;
         }
 
