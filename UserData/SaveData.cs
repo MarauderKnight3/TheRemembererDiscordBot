@@ -9,10 +9,10 @@ namespace TheRemembererDiscordBot.UserData
         public SaveData() { }
         public void Save(ulong userID) => Write(userID, this);
 
-        public static readonly DirectoryInfo SaveDirectory = Directory.CreateDirectory(Directory.GetCurrentDirectory() + @"\SaveData");
+        private static readonly DirectoryInfo SaveDirectory = Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "SaveData"));
         private static readonly Dictionary<ulong, SaveData> LoadedData = new();
-        public static string Read(ulong userID) => SaveDirectory.GetFiles(userID + ".json").Any() ? File.ReadAllText(SaveDirectory.GetFiles(userID + ".json").ElementAt(0).FullName) : string.Empty;
-        public static void Write(ulong userID, SaveData dataToSave) => File.WriteAllText(SaveDirectory.FullName + @"\" + userID + ".json", JsonSerializer.Serialize(dataToSave));
+        private static string Read(ulong userID) => SaveDirectory.GetFiles(userID + ".json").Any() ? File.ReadAllText(SaveDirectory.GetFiles(userID + ".json").ElementAt(0).FullName) : string.Empty;
+        public static void Write(ulong userID, SaveData dataToSave) => File.WriteAllText(Path.Combine(SaveDirectory.FullName, $"{userID}.json"), JsonSerializer.Serialize(dataToSave));
 
         public static SaveData GetSaveData(ulong userID)
         {
