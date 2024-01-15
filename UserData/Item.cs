@@ -4,13 +4,15 @@
     {
         private readonly ItemType _Type;
         public ItemType Type { get { return _Type; } }
-        private readonly int _Count;
-        public int Count { get { return _Count; } }
+        private ulong _Count;
+        public ulong Count { get { return _Count; } }
 
-        public Item(ItemType type, int count)
+        public Item(ItemType type, ulong count)
         {
             _Type = type;
             _Count = count;
         }
+
+        public void ModifyCount(ulong amount) => _Count = Math.Clamp(_Count + amount, 0, 1000000);
     }
 }
