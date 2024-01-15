@@ -2,7 +2,7 @@
 {
     public class Item
     {
-        private readonly ItemType _Type;
+        private ItemType _Type;
         public ItemType Type { get { return _Type; } }
         private long _Count;
         public long Count { get { return _Count; } }
@@ -12,6 +12,8 @@
             _Type = type;
             _Count = count;
         }
+
+        public void ChangeType(ItemType newType) => _Type = newType;
 
         public void ModifyCount(long amount) => _Count = Math.Clamp(_Count + amount, 0, 1000000);
 

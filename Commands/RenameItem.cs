@@ -27,6 +27,14 @@ namespace TheRemembererDiscordBot.Commands
 
             targetItemType.SetName(newName);
 
+            foreach (KeyValuePair<string, Inventory> inventory in thisUserData.Inventories)
+            {
+                foreach (Item item in inventory.Value.Items.Where(x => x.Type.Name == oldName))
+                {
+                    item.ChangeType(targetItemType);
+                }
+            }
+
             await Respond(message, "The item type `" + oldName + "` has been renamed successfully to `" + newName + "`.");
         }
     }
