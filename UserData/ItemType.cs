@@ -4,15 +4,16 @@
     {
         private string _Name;
         public string Name { get { return _Name; } }
-        private readonly decimal _Weight;
-        public decimal Weight { get { return _Weight; } }
+        private int _Weight;
+        public int Weight { get { return _Weight; } }
 
-        public ItemType(string name, decimal weight)
+        public ItemType(string name, int weight)
         {
             _Name = name;
             _Weight = weight;
         }
 
         public void SetName(string name) => _Name = name;
+        public void SetWeight(int weight) => _Weight = weight;
     }
 }
