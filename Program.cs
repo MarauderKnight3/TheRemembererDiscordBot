@@ -12,11 +12,13 @@ namespace TheRemembererDiscordBot
             new Commands.Ping(),
             new Commands.CoinFlip(),
             new Commands.DiceRoll(),
+
             new Commands.NewInventory(),
             new Commands.ListInventories(),
             new Commands.RenameInventory(),
             new Commands.DeleteInventory(),
             new Commands.DeleteAllInventories(),
+
             new Commands.NewItemType(),
             new Commands.ListItemTypes(),
         };

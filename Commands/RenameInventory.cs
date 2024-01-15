@@ -31,6 +31,5 @@ namespace TheRemembererDiscordBot.Commands
 
             await Respond(message, "The inventory `" + oldName + "` has been renamed successfully to `" + newName + "`.");
         }
-
     }
 }
