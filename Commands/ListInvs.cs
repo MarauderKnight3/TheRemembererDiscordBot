@@ -34,7 +34,7 @@ namespace TheRemembererDiscordBot.Commands
 
         public static List<string> GetInventoryPages(SaveData thisUserData, string searchQuery = "")
         {
-            List<string> inventoryNames = thisUserData.Inventories.Keys.Where(x => x.ToLower().Contains(searchQuery.ToLower())).ToList();
+            List<string> inventoryNames = thisUserData.Inventories.Where(x => x.Key.ToLower().Contains(searchQuery.ToLower())).Select(x => x.Value.Listing(x.Key)).ToList();
 
             List<string> inventoryPages = new();
 
@@ -42,7 +42,7 @@ namespace TheRemembererDiscordBot.Commands
 
             for (int i = 0; i < inventoryNames.Count;)
             {
-                currentPageText = new StringBuilder("```");
+                currentPageText = new StringBuilder("```" + "Name".PadRight(35) + "Weight");
 
                 for (; (i < inventoryNames.Count) && ((currentPageText.Length + "\n" + inventoryNames[i]).Length < 1997); i++)
                     currentPageText.Append("\n" + inventoryNames[i]);
