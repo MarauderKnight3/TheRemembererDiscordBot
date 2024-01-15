@@ -7,7 +7,7 @@ namespace TheRemembererDiscordBot.Commands
     public class RenameItem : Command
     {
         public override string CommandDescription() => "Rename an item type.";
-        public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of item type to rename", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>()), new("New name of the item type", new()) };
+        public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of item type to rename", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>(), forceNotCustom: true), new("New name of the item type", new()) };
         public override async Task CommandAction(SocketMessage message, List<object> args)
         {
             string oldName = args[0].ToString() ?? string.Empty;

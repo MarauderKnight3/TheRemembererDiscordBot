@@ -9,8 +9,8 @@ namespace TheRemembererDiscordBot.Commands
         public override string CommandDescription() => "Put an item, or multiple, of a specified type, into a specified inventory.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new()
         {
-            new("Inventory to give to", SaveData.GetSaveData(message.Author.Id).Inventories.Keys.ToList<object>()),
-            new("Item to give", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>(), true),
+            new("Inventory to give to", SaveData.GetSaveData(message.Author.Id).Inventories.Keys.ToList<object>(), forceNotCustom: true),
+            new("Item to give", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>(), true, forceNotCustom: true),
             new("Amount to give", new() { 1, 1000000 }, mayBeSkipped: true)
         };
         public override async Task CommandAction(SocketMessage message, List<object> args)

@@ -10,7 +10,7 @@ namespace TheRemembererDiscordBot.Commands
         public override string CommandDescription() => "View an inventory.";
         public override List<CommandArgument> CommandArguments(SocketMessage message) => new()
         {
-            new("Inventory to view", SaveData.GetSaveData(message.Author.Id).Inventories.Keys.ToList<object>()),
+            new("Inventory to view", SaveData.GetSaveData(message.Author.Id).Inventories.Keys.ToList<object>(), forceNotCustom: true),
             new("Page number", new() { 1, 1000 }, mayBeSkipped: true),
             new("Search query", new(), true, true)
         };

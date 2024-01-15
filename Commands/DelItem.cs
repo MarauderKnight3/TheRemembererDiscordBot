@@ -7,7 +7,7 @@ namespace TheRemembererDiscordBot.Commands
     public class DelItem : Command
     {
         public override string CommandDescription() => "Delete an item type.";
-        public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of item type to delete", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>()), new("Confirm", new() { "confirm" }, mayBeSkipped: true) };
+        public override List<CommandArgument> CommandArguments(SocketMessage message) => new() { new("Name of item type to delete", SaveData.GetSaveData(message.Author.Id).ItemTypes.Select(x => x.Name).ToList<object>(), forceNotCustom: true), new("Confirm", new() { "confirm" }, mayBeSkipped: true) };
         public override async Task CommandAction(SocketMessage message, List<object> args)
         {
             if (args.Count < 1 || args[0] == null || args[0] is not string itemTypeName)
