@@ -46,8 +46,8 @@
                 false when ExpectedInputs.Count == 2 && ExpectedInputs[0] is int && ExpectedInputs[1] is int => ArgType.PositiveIntegerRange,
                 false when ExpectedInputs.Count > 0 && ExpectedInputs[0] is int => ArgType.PositiveIntegerRangeOrText,
                 true when ExpectedInputs.Count > 0 && ExpectedInputs[0] is int => ArgType.PositiveIntegerRangeOrTextConcat,
-                false when (ExpectedInputs.Count > 0 || forceNotCustom) && ExpectedInputs[0] is not int => ArgType.Text,
-                true when (ExpectedInputs.Count > 0 || forceNotCustom) && ExpectedInputs[0] is not int => ArgType.TextConcat,
+                false when forceNotCustom || (ExpectedInputs.Count > 0 && ExpectedInputs[0] is not int) => ArgType.Text,
+                true when forceNotCustom || (ExpectedInputs.Count > 0 && ExpectedInputs[0] is not int) => ArgType.TextConcat,
                 false when ExpectedInputs.Count == 0 => ArgType.CustomText,
                 true when ExpectedInputs.Count == 0 => ArgType.CustomTextConcat,
                 _ => ArgType.CustomText
