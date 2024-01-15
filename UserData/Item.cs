@@ -14,5 +14,9 @@
         }
 
         public void ModifyCount(long amount) => _Count = Math.Clamp(_Count + amount, 0, 1000000);
+
+        public int StackWeight() => Type.Weight * (int)Count;
+
+        public string Listing() => (Type.Name + " (" + Count + ")").PadRight(35) + StackWeight();
     }
 }
