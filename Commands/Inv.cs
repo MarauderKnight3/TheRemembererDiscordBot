@@ -23,6 +23,12 @@ namespace TheRemembererDiscordBot.Commands
 
             Inventory targetInventory = thisUserData.Inventories[targetInventoryName];
 
+            if (targetInventory.Items.Count == 0)
+            {
+                await Respond(message, "That inventory is empty.");
+                return;
+            }
+
             string searchQuery = args.Count == 3 ? args[2].ToString() ?? string.Empty : string.Empty;
 
             List<string> itemPages = GetItemPages(targetInventory, searchQuery);
