@@ -19,6 +19,14 @@ namespace TheRemembererDiscordBot.Commands
 
             targetItemType.SetWeight(newWeight);
 
+            foreach (KeyValuePair<string, Inventory> inventory in thisUserData.Inventories)
+            {
+                foreach (Item item in inventory.Value.Items.Where(x => x.Type.Name == itemTypeName))
+                {
+                    item.ChangeType(targetItemType);
+                }
+            }
+
             await Respond(message, "The item type `" + itemTypeName + "` has been re-weighted successfully.");
         }
     }
