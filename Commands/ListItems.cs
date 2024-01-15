@@ -26,7 +26,7 @@ namespace TheRemembererDiscordBot.Commands
 
             int pageNumber = Math.Clamp(args.Count > 0 ? (int)args[0] - 1 : 0, 0, inventoryPages.Count - 1);
 
-            string response = "You are viewing your inventories. Page " + (pageNumber + 1) + " of " + inventoryPages.Count + (searchQuery != string.Empty ? (" (Using supplied search query)") : string.Empty);
+            string response = "You are viewing your item types. Page " + (pageNumber + 1) + " of " + inventoryPages.Count + (searchQuery != string.Empty ? (" (Using supplied search query)") : string.Empty);
 
             await Respond(message, response);
             await Respond(message, inventoryPages[pageNumber]);
