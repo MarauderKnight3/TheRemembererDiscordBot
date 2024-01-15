@@ -25,6 +25,9 @@ namespace TheRemembererDiscordBot
             new Commands.ChangeItem(),
             new Commands.DelItem(),
             new Commands.DeleteAllItemTypes(),
+
+            new Commands.Give(),
+            new Commands.Consume(),
         };
 
         private static Task Main() => new Program().MainAsync();
